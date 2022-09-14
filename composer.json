@@ -16,15 +16,15 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Ophim\\Ripple\\": "src/",
-            "Ophim\\Ripple\\Database\\Factories\\": "database/factories/",
-            "Ophim\\Ripple\\Database\\Seeders\\": "database/seeders/"
+            "Ophim\\September\\": "src/",
+            "Ophim\\September\\Database\\Factories\\": "database/factories/",
+            "Ophim\\September\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Ophim\\Ripple\\RippleServiceProvider"
+                "Ophim\\September\\SeptemberServiceProvider"
             ]
         }
     },
