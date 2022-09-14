@@ -1,0 +1,32 @@
+{
+    "name": "ophimcms/ophim-september",
+    "description": "Ophim's september theme",
+    "type": "library",
+    "authors": [
+        {
+            "name": "ophimcms",
+            "email": "opdlnf01@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^6|^7|^8",
+        "ckfinder/ckfinder-laravel-package": "v3.5.2.1",
+        "hacoidev/ophim-core": "dev-main"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ophim\\Ripple\\": "src/",
+            "Ophim\\Ripple\\Database\\Factories\\": "database/factories/",
+            "Ophim\\Ripple\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ophim\\Ripple\\RippleServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}
