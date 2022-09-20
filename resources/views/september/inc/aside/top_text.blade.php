@@ -1,6 +1,6 @@
 @foreach ($top['data'] ?? [] as $movie)
     @if ($loop->first)
-        <a href="" title="" class="overflow-hidden relative group">
+        <a href="{{ $movie->getUrl() }}" title="{{ $movie->name }}" class="overflow-hidden relative group">
             <img src="{{ $movie->poster_url }}" class="group-hover:opacity-60 transition-all duration-500 w-full h-full"
                 alt="" />
             <span class="absolute bottom-0 px-2 pb-2 pt-16 bg-gradient-to-t from-main-900 w-full text-main-warning">
@@ -19,7 +19,7 @@
 
         </a>
     @else
-        <a href="" class="group">
+        <a href="{{ $movie->getUrl() }}" title="{{ $movie->name }}" class="group">
             <div
                 class="flex justify-start items-center space-x-1 py-1 border-b-[1px] border-main-secondary border-dashed border-opacity-25">
                 <div

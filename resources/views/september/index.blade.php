@@ -43,40 +43,45 @@ $data = Cache::remember('site.movies.latest', setting('site_cache_ttl', 5 * 60),
 
 @endphp
 
-@section('content')
-
+@section('slider_recommended')
     @if (count($recommendations))
-        <section class="w-full mt-2">
-            <div class="flex justify-between">
-                <div class="py-2 w-max">
-                    <h3
-                        class="text-base md:text-2xl uppercase font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#7367F0] to-[#8e84fc]">
-                        Phim HOT</h3>
+        <div class="container mx-auto px-2 md:px-0">
+            <section class="w-full mt-2">
+                <div class="flex justify-between">
+                    <div class="py-2 w-max">
+                        <h3
+                            class="text-base md:text-2xl uppercase font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#7367F0] to-[#8e84fc]">
+                            Phim HOT</h3>
+                    </div>
                 </div>
-            </div>
 
-            <div id="slider_recommend" class="owl-carousel owl-theme absolute">
-                @foreach ($recommendations ?? [] as $movie)
-                    <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}"
-                        class="row-span-1 col-span-1 md:row-span-2 md:col-span-2 overflow-hidden relative group">
-                        <img style="aspect-ratio: 256/340" src="{{ $movie->thumb_url }}" alt="{{ $movie->name ?? '' }}"
-                            class="group-hover:opacity-60 transition-all duration-500 transform group-hover:bg-opacity-60" />
-                        <span
-                            class="absolute bottom-0 px-2 pb-2 pt-16 bg-gradient-to-t from-main-900 w-full text-main-warning">
-                            <div class="font-bold overflow-hidden overflow-ellipsis whitespace-nowrap">{{ $movie->name }}
-                            </div>
-                            <div class="text-sm text-gray-300 italic overflow-hidden overflow-ellipsis whitespace-nowrap">
-                                {{ $movie->origin_name }} ({{ $movie->publish_year }})
-                            </div>
-                        </span>
-                        <span
-                            class="absolute top-0 left-0 p-0.5 bg-main-primary text-sm">{{ $movie->episode_current }}</span>
-                    </a>
-                @endforeach
-            </div>
-        </section>
+                <div id="slider_recommend" class="owl-carousel owl-theme absolute">
+                    @foreach ($recommendations ?? [] as $movie)
+                        <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}"
+                            class="row-span-1 col-span-1 md:row-span-2 md:col-span-2 overflow-hidden relative group">
+                            <img style="aspect-ratio: 256/340" src="{{ $movie->thumb_url }}" alt="{{ $movie->name ?? '' }}"
+                                class="group-hover:opacity-60 transition-all duration-500 transform group-hover:bg-opacity-60" />
+                            <span
+                                class="absolute bottom-0 px-2 pb-2 pt-16 bg-gradient-to-t from-main-900 w-full text-main-warning">
+                                <div class="font-bold overflow-hidden overflow-ellipsis whitespace-nowrap">
+                                    {{ $movie->name }}
+                                </div>
+                                <div
+                                    class="text-sm text-gray-300 italic overflow-hidden overflow-ellipsis whitespace-nowrap">
+                                    {{ $movie->origin_name }} ({{ $movie->publish_year }})
+                                </div>
+                            </span>
+                            <span
+                                class="absolute top-0 left-0 p-0.5 bg-main-primary text-sm">{{ $movie->episode_current }}</span>
+                        </a>
+                    @endforeach
+                </div>
+            </section>
+        </div>
     @endif
+@endsection
 
+@section('content')
     @foreach ($data as $item)
         <section class="w-full mt-2">
             <div class="flex justify-between">
@@ -118,16 +123,16 @@ $data = Cache::remember('site.movies.latest', setting('site_cache_ttl', 5 * 60),
                     stageOuterClass: 'owl-stage-outer',
                     responsive: {
                         1400: {
-                            items: 6
+                            items: 8
                         },
                         1280: {
-                            items: 4
+                            items: 6
                         },
                         1024: {
-                            items: 3
+                            items: 4
                         },
                         768: {
-                            items: 2
+                            items: 3
                         },
                     },
                     scrollPerPage: true,
@@ -138,11 +143,11 @@ $data = Cache::remember('site.movies.latest', setting('site_cache_ttl', 5 * 60),
                     autoplay: true,
                     navText: [
                         `<button class="block absolute top-0 left-0 text-white bg-main-900/60 h-[90%]">
-            <i class="fa-light px-1 fa-angles-left top-0 text-2xl"></i>
-          </button>`,
+                        <i class="fa-light px-1 fa-angles-left top-0 text-2xl"></i>
+                    </button>`,
                         `<button class="block absolute top-0 right-0 text-white bg-main-900/60 h-[90%]">
-            <i class="fa-light px-1 fa-angles-right top-0 text-2xl"></i>
-          </button>`
+                        <i class="fa-light px-1 fa-angles-right top-0 text-2xl"></i>
+                    </button>`
                     ],
                 });
             });

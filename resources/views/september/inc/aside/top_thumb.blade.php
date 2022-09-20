@@ -1,5 +1,5 @@
 @foreach ($top['data'] ?? [] as $movie)
-    <a href="{{ $movie->getUrl() }}" class="group">
+    <a href="{{ $movie->getUrl() }}" title="{{ $movie->name }}" class="group">
         <div
             class="flex justify-start items-center space-x-1 py-1 border-b-[1px] border-main-secondary border-dashed border-opacity-25">
             <div class="bg-main-primary group-hover:text-main-warning bg-opacity-10 px-2 text-main-primary font-bold">

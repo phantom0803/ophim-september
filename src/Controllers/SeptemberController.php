@@ -71,10 +71,15 @@ class SeptemberController
 
         $movie->generateSeoTags();
 
+        $movie->increment('view_total', 1);
+        $movie->increment('view_day', 1);
+        $movie->increment('view_week', 1);
+        $movie->increment('view_month', 1);
+
         $movie_related_cache_key = 'movie_related.' . $movie->id;
         $movie_related = Cache::get($movie_related_cache_key);
         if(is_null($movie_related)) {
-            $movie_related = $movie->categories[0]->movies()->inRandomOrder()->limit(10)->get();
+            $movie_related = $movie->categories[0]->movies()->inRandomOrder()->limit(12)->get();
             Cache::put($movie_related_cache_key, $movie_related, setting('site_cache_ttl', 5 * 60));
         }
 
@@ -108,7 +113,7 @@ class SeptemberController
         $movie_related_cache_key = 'movie_related.' . $movie->id;
         $movie_related = Cache::get($movie_related_cache_key);
         if(is_null($movie_related)) {
-            $movie_related = $movie->categories[0]->movies()->inRandomOrder()->limit(10)->get();
+            $movie_related = $movie->categories[0]->movies()->inRandomOrder()->limit(12)->get();
             Cache::put($movie_related_cache_key, $movie_related, setting('site_cache_ttl', 5 * 60));
         }
 
@@ -136,9 +141,10 @@ class SeptemberController
         return response([], 204);
     }
 
-    public function rateMovie(Request $request, $movie, $slug)
+    public function rateMovie(Request $request, $movie)
     {
-        $movie = Movie::fromCache()->find($movie)->load('episodes');
+
+        $movie = Movie::fromCache()->find($movie);
 
         $movie->refresh()->increment('rating_count', 1, [
             'rating_star' => $movie->rating_star +  ((int) request('rating') - $movie->rating_star) / ($movie->rating_count + 1)

@@ -29,7 +29,7 @@
                 stageOuterClass: 'owl-stage-outer',
                 responsive: {
                     1400: {
-                        items: 5
+                        items: 4
                     },
                     1280: {
                         items: 3

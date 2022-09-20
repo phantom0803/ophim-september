@@ -49,6 +49,8 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
             {!! get_theme_option('ads_header') !!}
         </div>
     @endif
+    @yield('slider_recommended')
+    @yield('breadcrumb')
     <div class="container mx-auto lg:flex px-2 md:px-0">
         <div class="lg:w-3/4 lg:pr-4">
             @yield('content')

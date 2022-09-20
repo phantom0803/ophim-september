@@ -23,6 +23,6 @@ Route::group([
     Route::get(sprintf('/%s/{type}', config('ophim.routes.types', 'danh-sach')), [SeptemberController::class, 'getMovieOfType'])->name('types.movies.index');
     Route::get(sprintf('/%s/{movie}', config('ophim.routes.movie', 'phim')), [SeptemberController::class, 'getMovieOverview'])->name('movies.show');
     Route::get(sprintf('/%s/{movie}/{episode}', config('ophim.routes.movie', 'phim')), [SeptemberController::class, 'getEpisode'])->name('episodes.show');
-    Route::post(sprintf('/%s/{movie}/{episode}', config('ophim.routes.movie', 'phim')), [SeptemberController::class, 'reportEpisode'])->name('episodes.report');
-    Route::post(sprintf('/%s/{movie}/{episode}/rate', config('ophim.routes.movie', 'phim')), [SeptemberController::class, 'rateMovie'])->name('movie.rating');
+    Route::post(sprintf('/%s/{movie}/{episode}/report', config('ophim.routes.movie', 'phim')), [SeptemberController::class, 'reportEpisode'])->name('episodes.report');
+    Route::post(sprintf('/%s/{movie}/rate', config('ophim.routes.movie', 'phim')), [SeptemberController::class, 'rateMovie'])->name('movie.rating');
 });
