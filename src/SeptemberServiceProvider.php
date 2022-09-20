@@ -31,11 +31,19 @@ class SeptemberServiceProvider extends ServiceProvider
                 'preview_image' => '',
                 'options' => [
                     [
+                        'name' => 'recommendations_limit',
+                        'label' => 'Recommendations Limit',
+                        'type' => 'number',
+                        'hint' => 'Number',
+                        'value' => 10,
+                        'tab' => 'List'
+                    ],
+                    [
                         'name' => 'latest',
                         'label' => 'Home Page',
                         'type' => 'code',
                         'hint' => 'display_label|relation|find_by_field|value|limit|show_more_url|show_template (slider_poster|slider_thumb|section_poster|section_thumb)',
-                        'value' => "Phim bộ mới||type|series|10|/danh-sach/phim-bo|section_thumb\r\nPhim lẻ mới||type|single|10|/danh-sach/phim-bo|section_poster\r\nPhim lẻ mới||type|single|10|/danh-sach/phim-bo|slider_thumb\r\nPhim lẻ mới||type|single|10|/danh-sach/phim-bo|slider_poster",
+                        'value' => "Phim bộ mới||type|series|12|/danh-sach/phim-bo|section_thumb\r\nPhim lẻ mới||type|single|12|/danh-sach/phim-bo|section_poster\r\nPhim lẻ mới||type|single|10|/danh-sach/phim-bo|slider_thumb\r\nPhim lẻ mới||type|single|10|/danh-sach/phim-bo|slider_poster",
                         'attributes' => [
                             'rows' => 5
                         ],
@@ -46,7 +54,7 @@ class SeptemberServiceProvider extends ServiceProvider
                         'label' => 'Danh sách hot',
                         'type' => 'code',
                         'hint' => 'Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_text|top_thumb)',
-                        'value' => "Top phim lẻ||type|single|view_total|desc|4|top_text\r\nTop phim bộ||type|single|view_total|desc|4|top_thumb",
+                        'value' => "Top phim lẻ||type|single|view_total|desc|9|top_text\r\nTop phim bộ||type|single|view_total|desc|9|top_thumb",
                         'attributes' => [
                             'rows' => 5
                         ],
