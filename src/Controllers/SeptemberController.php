@@ -49,7 +49,7 @@ class SeptemberController
                 if (request('filter')['sort'] == 'view') {
                     return $movie->orderBy('view_total', 'desc');
                 }
-            })->paginate();
+            })->paginate(36);
 
             return view('themes::september.catalog', [
                 'data' => $data,
@@ -162,7 +162,7 @@ class SeptemberController
 
         $category->generateSeoTags();
 
-        $movies = $category->movies()->paginate(20);
+        $movies = $category->movies()->paginate(36);
 
         return view('themes::september.catalog', [
             'data' => $movies,
@@ -181,7 +181,7 @@ class SeptemberController
 
         $region->generateSeoTags();
 
-        $movies = $region->movies()->paginate(20);
+        $movies = $region->movies()->paginate(36);
 
         return view('themes::september.catalog', [
             'data' => $movies,
@@ -200,7 +200,7 @@ class SeptemberController
 
         $actor->generateSeoTags();
 
-        $movies = $actor->movies()->paginate(20);
+        $movies = $actor->movies()->paginate(36);
 
         return view('themes::september.catalog', [
             'data' => $movies,
@@ -219,7 +219,7 @@ class SeptemberController
 
         $director->generateSeoTags();
 
-        $movies = $director->movies()->paginate(20);
+        $movies = $director->movies()->paginate(36);
 
         return view('themes::september.catalog', [
             'data' => $movies,
@@ -238,7 +238,7 @@ class SeptemberController
 
         $tag->generateSeoTags();
 
-        $movies = $tag->movies()->paginate(20);
+        $movies = $tag->movies()->paginate(36);
         return view('themes::september.catalog', [
             'data' => $movies,
             'tag' => $tag,
@@ -252,7 +252,7 @@ class SeptemberController
         $type = $slug == 'phim-le' ? 'single' : 'series';
         $section_name = $slug == 'phim-le' ? 'Phim Lẻ' : 'Phim Bộ';
 
-        $movies = Movie::where('type', $type)->paginate(20);
+        $movies = Movie::where('type', $type)->paginate(36);
 
         return view('themes::september.catalog', [
             'data' => $movies,

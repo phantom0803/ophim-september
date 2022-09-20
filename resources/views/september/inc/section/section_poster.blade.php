@@ -16,7 +16,7 @@
                     10</span>
             </a>
         @else
-            <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}" class="overflow-hidden relative group">
+            <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}" class="@if ($loop->last) hidden lg:block @endif overflow-hidden relative group">
                 <img src="{{ $movie->poster_url }}" alt="{{ $movie->name ?? '' }}"
                     class="group-hover:opacity-60 transition-all duration-500 transform group-hover:scale-110 w-full h-full" />
                 <span class="absolute bottom-0 px-2 pb-2 pt-16 bg-gradient-to-t from-main-900 w-full text-main-warning">

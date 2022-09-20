@@ -108,7 +108,7 @@
                     </label>
                 @endif
                 @if (!$currentMovie->is_copyright && count($currentMovie->episodes) && $currentMovie->episodes[0]['link'] != '')
-                    <a href="{{ $currentMovie->episodes->sortByDesc('name', SORT_NATURAL)->last()->getUrl() }}">
+                    <a href="{{ $currentMovie->episodes->sortBy([['name', 'asc'], ['type', 'desc']])->first()->getUrl() }}">
                         <div
                             class="bg-main-primary text-gray-50 inline-block px-3 py-2 shadow-none hover:shadow-primary duration-150">
                             <i class="fa-light fa-circle-play"></i>
@@ -262,11 +262,11 @@
                         <span class="flex gap-1">
                             @php
                                 $currentMovie->episodes
-                                    ->sortByDesc('name', SORT_NATURAL)
+                                    ->sortBy([['name', 'desc'], ['type', 'desc']])
                                     ->unique('name')
                                     ->take(3)
                                     ->map(function ($episode) {
-                                        echo '<a href="' .$episode->getUrl() .'" class="w-content text-center bg-main-labelbgSecondary text-white hover:shadow-menu hover:bg-main-primary duration-150 px-4 py-1 overflow-hidden overflow-ellipsis whitespace-nowrap">' .$episode->name .'</a>';
+                                        echo '<a href="' . $episode->getUrl() . '" class="w-content text-center bg-main-labelbgSecondary text-white hover:shadow-menu hover:bg-main-primary duration-150 px-4 py-1 overflow-hidden overflow-ellipsis whitespace-nowrap">' . $episode->name . '</a>';
                                     });
                             @endphp
                         </span>

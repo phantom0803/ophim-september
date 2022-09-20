@@ -51,6 +51,7 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
     @endif
     @yield('slider_recommended')
     @yield('breadcrumb')
+    @yield('player_wraper')
     <div class="container mx-auto lg:flex px-2 md:px-0">
         <div class="lg:w-3/4 lg:pr-4">
             @yield('content')
@@ -86,4 +87,6 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
             })
         });
     </script>
+
+    {!! setting('site_scripts_google_analytics') !!}
 @endsection
