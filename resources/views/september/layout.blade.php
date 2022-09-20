@@ -7,10 +7,11 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
     foreach ($lists as $list) {
         if (trim($list)) {
             $list = explode('|', $list);
-            [$label, $relation, $field, $val, $sortKey, $alg, $limit] = array_merge($list, ['Phim hot', '', 'type', 'series', 'view_total', 'desc', 4]);
+            [$label, $relation, $field, $val, $sortKey, $alg, $limit, $template] = array_merge($list, ['Phim hot', '', 'type', 'series', 'view_total', 'desc', 4, 'top_thumb']);
             try {
                 $data[] = [
                     'label' => $label,
+                    'template' => $template,
                     'data' => \Ophim\Core\Models\Movie::when($relation, function ($query) use ($relation, $field, $val) {
                         $query->whereHas($relation, function ($rel) use ($field, $val) {
                             $rel->where($field, $val);
@@ -34,7 +35,7 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
 @endphp
 
 @push('header')
-    <link href="/themes/september/css/styles.css" rel="stylesheet">
+    <link href="/themes/september/css/styles.min.css" rel="stylesheet">
     <link href="/themes/september/plugins/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet" />
@@ -43,25 +44,14 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
 @section('body')
     @include('themes::september.inc.header')
     @include('themes::september.inc.nav')
+    @if (get_theme_option('ads_header'))
+        <div class="container mx-auto items-center text-center mt-2">
+            {!! get_theme_option('ads_header') !!}
+        </div>
+    @endif
     <div class="container mx-auto lg:flex px-2 md:px-0">
         <div class="lg:w-3/4 lg:pr-4">
-            <section class="w-full mt-2">
-                <div class="flex justify-between">
-                    <div class="py-2 w-max">
-                        <h3
-                            class="text-base md:text-2xl uppercase font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#7367F0] to-[#8e84fc]">
-                            SECTION THUMB</h3>
-                        <div class="w-full h-0.5 bg-main-indigo bg-gradient-to-r from-[#7367F0] to-[#8e84fc]"></div>
-                    </div>
-                    <a href="" title="">
-                        <div class="px-2 py-2 flex gap-x-2 text-md text-main-purple hover:text-main-orange items-center">
-                            <span>Xem thêm</span>
-                            <i class="fa-light fa-chevrons-right"></i>
-                        </div>
-                    </a>
-                </div>
-                @include('themes::september.inc.section_thumb')
-            </section>
+            @yield('content')
         </div>
         <aside class="lg:w-1/4">
             @include('themes::september.inc.aside')
@@ -70,17 +60,19 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
 @endsection
 
 @section('footer')
-    <!-- BEGIN FOOTER -->
     <footer class="bg-main-800 mt-2 relative bottom-0 clear-both">
         <div class="container mx-auto flex py-8">
             {!! get_theme_option('footer') !!}
         </div>
     </footer>
-    <!-- END FOOTER -->
-
-    <!-- BEGIN BASE SCRIPT -->
+    @if (get_theme_option('ads_header'))
+        <div class="relative">
+            <div class="container mx-auto px-4 md:px-8 xl:px-40 fixed items-center text-center bottom-0 right-0 left-0 z-40">
+                {!! get_theme_option('ads_catfish') !!}
+            </div>
+        </div>
+    @endif
     <script src="/themes/september/js/jquery-3.6.0.min.js"></script>
-    <!-- END BASE SCRIPT -->
     <script>
         $(document).ready(function() {
             $("#header-search-button").click(() => {
