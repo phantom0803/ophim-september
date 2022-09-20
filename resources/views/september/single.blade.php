@@ -92,15 +92,63 @@
                     bản quyền</div>
             @endif
 
+            <div class="absolute top-0 right-0 bg-main-800/80 p-2 flex items-center gap-x-1 text-main-success">
+                <i class="fa-regular fa-eye text-xs"></i>
+                <span class="text-xs">
+                    {{ $currentMovie->view_total }}
+                </span>
+            </div>
+
             <div class="absolute bottom-4 text-center w-full bg-main-700 bg-opacity-40 py-2 m-0">
-                <a href="{{ $currentMovie->episodes->sortByDesc('name', SORT_NATURAL)->last()->getUrl() }}">
-                    <div
-                        class="bg-main-primary text-gray-50 inline-block px-3 py-2 shadow-none hover:shadow-primary duration-150">
-                        <i class="fa-light fa-circle-play"></i>
-                        Xem phim</div>
-                </a>
+                @if ($currentMovie->trailer_url)
+                    <label id="toggleModal-trailer"
+                        class="bg-main-blue text-gray-50 inline-block px-3 py-2 shadow-none hover:shadow-secondary duration-150 cursor-pointer">
+                        <i class="fa-brands fa-youtube"></i>
+                        Trailer
+                    </label>
+                @endif
+                @if (!$currentMovie->is_copyright && count($currentMovie->episodes) && $currentMovie->episodes[0]['link'] != '')
+                    <a href="{{ $currentMovie->episodes->sortByDesc('name', SORT_NATURAL)->last()->getUrl() }}">
+                        <div
+                            class="bg-main-primary text-gray-50 inline-block px-3 py-2 shadow-none hover:shadow-primary duration-150">
+                            <i class="fa-light fa-circle-play"></i>
+                            Xem phim
+                        </div>
+                    </a>
+                @else
+                    <div class="text-white">Đang cập nhật...</div>
+                @endif
             </div>
         </div>
+
+        @if ($currentMovie->trailer_url)
+            @php
+                parse_str(parse_url($currentMovie->trailer_url, PHP_URL_QUERY), $parse_url);
+                $trailer_id = $parse_url['v'];
+            @endphp
+            <div id="modal-trailer" class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog"
+                aria-modal="true">
+                <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+                <div class="fixed inset-0 z-10 overflow-y-auto">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div id="modal-trailer-iframe"
+                            class="relative transform overflow-hidden text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                            <div class=" bg-main-800/60 p-2">
+                                <iframe width="100%" height="315"
+                                    src="https://www.youtube.com/embed/{{ $trailer_id }}" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    frameborder="0" scrolling="no" allowfullscreen></iframe>
+                            </div>
+                            <div class="bg-main-900/60 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                                <button type="button" id="close-trailer-modal"
+                                    class="mt-3 inline-flex w-full justify-center border border-gray-300 bg-white px-2 py-1 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <div class="w-full md:w-2/3 lg:w-2/3 xl:w-3/4 md:pl-2 pt-0 md:mt-0 text-sm">
             <div class="bg-main-700/40 text-center py-2">
@@ -122,6 +170,10 @@
             <ul class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-2 gap-2">
                 <li>
                     <label class="font-bold text-white">Trạng thái: </label>
+                    <span class="px-4 bg-main-labelbgWarning text-main-warning">{{ $currentMovie->getStatus() }}</span>
+                </li>
+                <li>
+                    <label class="font-bold text-white">Tập hiện tại: </label>
                     <span class="px-4 bg-main-labelbgSuccess text-main-success">{{ $currentMovie->episode_current }} -
                         {{ $currentMovie->language }}</span>
                 </li>
@@ -142,10 +194,6 @@
                 <li>
                     <label class="font-bold text-white">Chất lượng: </label>
                     <span class="">{{ $currentMovie->quality }}</span>
-                </li>
-                <li>
-                    <label class="font-bold text-white">Tổng lượt xem: </label>
-                    <span class="">{{ $currentMovie->view_total }}</span>
                 </li>
 
                 <li class="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-3 line-clamp-2">
@@ -208,6 +256,22 @@
                     </span>
                 </li>
 
+                @if (!$currentMovie->is_copyright && count($currentMovie->episodes) && $currentMovie->episodes[0]['link'] != '')
+                    <li class="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-3">
+                        <label class="font-bold text-white">Tập mới nhất: </label>
+                        <span class="flex gap-1">
+                            @php
+                                $currentMovie->episodes
+                                    ->sortByDesc('name', SORT_NATURAL)
+                                    ->unique('name')
+                                    ->take(3)
+                                    ->map(function ($episode) {
+                                        echo '<a href="' .$episode->getUrl() .'" class="w-content text-center bg-main-labelbgSecondary text-white hover:shadow-menu hover:bg-main-primary duration-150 px-4 py-1 overflow-hidden overflow-ellipsis whitespace-nowrap">' .$episode->name .'</a>';
+                                    });
+                            @endphp
+                        </span>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
@@ -254,6 +318,18 @@
 @endsection
 
 @push('scripts')
+    <script type="text/javascript">
+        $("#toggleModal-trailer").click(() => {
+            $("#modal-trailer").toggle("hidden");
+        })
+        $('body').click(function(event) {
+            if (($(event.target).closest("#modal-trailer").length && !$(event.target).closest(
+                    "#modal-trailer-iframe").length) || $(event.target).closest("#close-trailer-modal").length) {
+                $("#modal-trailer").toggle("hidden");
+            }
+        });
+    </script>
+
     <script src="/themes/september/plugins/jquery-raty/jquery.raty.js"></script>
     <link href="/themes/september/plugins/jquery-raty/jquery.raty.css" rel="stylesheet" type="text/css" />
 

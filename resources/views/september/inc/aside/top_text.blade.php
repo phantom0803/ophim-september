@@ -1,8 +1,8 @@
 @foreach ($top['data'] ?? [] as $movie)
     @if ($loop->first)
         <a href="{{ $movie->getUrl() }}" title="{{ $movie->name }}" class="overflow-hidden relative group">
-            <img src="{{ $movie->poster_url }}" class="group-hover:opacity-60 transition-all duration-500 w-full h-full"
-                alt="" />
+            <img src="{{ $movie->poster_url }}" class="group-hover:opacity-60 transition-all duration-500 w-full h-[200px]"
+                alt="{{ $movie->name }}" />
             <span class="absolute bottom-0 px-2 pb-2 pt-16 bg-gradient-to-t from-main-900 w-full text-main-warning">
                 <div class="font-bold overflow-hidden overflow-ellipsis whitespace-nowrap">{{ $movie->name }}</div>
                 <div class="text-sm text-gray-300 italic overflow-hidden overflow-ellipsis whitespace-nowrap">
@@ -10,7 +10,7 @@
                 </div>
             </span>
 
-            <div class="absolute top-0 right-0 bg-main-800/80 p-2 flex gap-x-1 items-center text-main-success">
+            <div class="absolute top-0 right-0 bg-main-800/40 p-2 flex gap-x-1 items-center text-main-success">
                 <i class="fa-regular fa-eye text-xs"></i>
                 <span class="text-xs">
                     {{ $movie->view_week ?? 0 }}
