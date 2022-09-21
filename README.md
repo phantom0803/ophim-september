@@ -2,16 +2,16 @@
 
 ## Demo
 ### Home Page
-![Alt text](./demo/September-HomePage.png?raw=true "Home Page")
+![Alt text](https://i.ibb.co/bWkS4Sf/September-Home-Page.png "Home Page")
 
 ### Catalog Page
-![Alt text](./demo/September-CatalogPage.png?raw=true "Catalog Page")
+![Alt text](https://i.ibb.co/B2dPj5S/September-Catalog-Page.png "Catalog Page")
 
 ### Single Page
-![Alt text](./demo/September-SinglePage.png?raw=true "Single Page")
+![Alt text](https://i.ibb.co/6r1Z70Y/September-Single-Page.png "Single Page")
 
 ### Episode Page
-![Alt text](./demo/September-EpisodePage.png?raw=true "Episode Page")
+![Alt text](https://i.ibb.co/Pxb8m1G/September-Episode-Page.png "Episode Page")
 
 ## Requirements
 https://github.com/hacoidev/ophim-core
