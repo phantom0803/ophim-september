@@ -170,16 +170,15 @@
             <ul class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-2 gap-2">
                 <li>
                     <label class="font-bold text-white">Trạng thái: </label>
-                    <span class="px-4 bg-main-labelbgWarning text-main-warning">{{ $currentMovie->getStatus() }}</span>
+                    <span class="px-1 bg-main-labelbgWarning text-main-warning">{{ $currentMovie->getStatus() }}</span>
                 </li>
                 <li>
                     <label class="font-bold text-white">Tập hiện tại: </label>
-                    <span class="px-4 bg-main-labelbgSuccess text-main-success">{{ $currentMovie->episode_current }} -
-                        {{ $currentMovie->language }}</span>
+                    <span class="px-1 bg-main-labelbgSuccess text-main-success">{{ $currentMovie->episode_current }} {{ $currentMovie->language }}</span>
                 </li>
                 <li>
                     <label class="font-bold text-white">Số tập: </label>
-                    <span class="px-4 bg-main-labelbgInfo text-main-info">
+                    <span class="px-1 bg-main-labelbgInfo text-main-info">
                         {{ $currentMovie->episode_total ?? 'N/A' }}
                     </span>
                 </li>
