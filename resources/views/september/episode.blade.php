@@ -252,16 +252,19 @@
     <script src="/js/jwplayer.hlsjs.min.js"></script>
 
     <script type="text/javascript">
-        $("#toggleModal-report").click(() => {
-            $("#modal-report").toggle("hidden");
-            $("#modal-report-backdrop").toggle("hidden");
-        })
-        $('body').click(function(event) {
-            if (($(event.target).closest("#modal-report").length && !$(event.target).closest("#modal-report-form")
-                    .length) || $(event.target).closest("#close-report-modal").length) {
+        $(document).ready(function() {
+            $("#toggleModal-report").click(() => {
                 $("#modal-report").toggle("hidden");
                 $("#modal-report-backdrop").toggle("hidden");
-            }
+            })
+            $('body').click(function(event) {
+                if (($(event.target).closest("#modal-report").length && !$(event.target).closest(
+                            "#modal-report-form")
+                        .length) || $(event.target).closest("#close-report-modal").length) {
+                    $("#modal-report").toggle("hidden");
+                    $("#modal-report-backdrop").toggle("hidden");
+                }
+            });
         });
     </script>
 
