@@ -250,6 +250,10 @@ class SeptemberController
     public function getMovieOfType(Request $request, $slug)
     {
         switch ($slug) {
+            case 'phim-de-cu':
+                $section_name = 'Phim Hot Đề Cử';
+                $movies = Movie::where('is_recommended', 1)->paginate(36);
+                break;
             case 'phim-chieu-rap':
                 $section_name = 'Phim Chiếu Rạp';
                 $movies = Movie::where('is_shown_in_theater', 1)->paginate(36);
