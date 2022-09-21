@@ -249,10 +249,21 @@ class SeptemberController
 
     public function getMovieOfType(Request $request, $slug)
     {
-        $type = $slug == 'phim-le' ? 'single' : 'series';
-        $section_name = $slug == 'phim-le' ? 'Phim Lẻ' : 'Phim Bộ';
-
-        $movies = Movie::where('type', $type)->paginate(36);
+        switch ($slug) {
+            case 'phim-chieu-rap':
+                $section_name = 'Phim Chiếu Rạp';
+                $movies = Movie::where('is_shown_in_theater', 1)->paginate(36);
+                break;
+            case 'phim-sap-chieu':
+                $section_name = 'Phim Sắp Chiếu';
+                $movies = Movie::where('status', 'trailer')->paginate(36);
+                break;
+            default:
+                $type = $slug == 'phim-le' ? 'single' : 'series';
+                $section_name = $slug == 'phim-le' ? 'Phim Lẻ' : 'Phim Bộ';
+                $movies = Movie::where('type', $type)->paginate(36);
+                break;
+        }
 
         return view('themes::september.catalog', [
             'data' => $movies,
