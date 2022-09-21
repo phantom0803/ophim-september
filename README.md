@@ -37,3 +37,7 @@ https://github.com/hacoidev/ophim-core
     + `Phim sắp chiếu||status|trailer|publish_year|desc|9|top_text`
     + `Top phim bộ||type|series|view_total|desc|9|top_thumb`
     + `Top phim lẻ||type|single|view_total|desc|9|top_thumb`
+
+### Custom View Blade
+- File blade gốc trong Package: `/vendor/ophimcms/ophim-september/resources/views/september`
+- Copy file cần custom đến: `/resources/views/vendor/themes/september`
