@@ -23,9 +23,9 @@
             <div
                 class="flex justify-start items-center space-x-1 py-1 border-b-[1px] border-main-secondary border-dashed border-opacity-25">
                 <div class="w-6 text-center bg-main-primary group-hover:text-main-warning bg-opacity-10 text-main-primary font-bold">{{ $loop->index + 1 }}</div>
-                <div class="flex-grow px-2 space-y-2 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                <div class="basis-4/6 flex-grow px-2 space-y-2 overflow-hidden">
                     <div
-                        class="font-bold text-main-primary text-sm group-hover:text-main-warning transition duration-300 ease-in-out">
+                        class="font-bold text-main-primary text-sm group-hover:text-main-warning transition duration-300 ease-in-out overflow-hidden overflow-ellipsis whitespace-nowrap">
                         {{ $movie->name }}</div>
                 </div>
                 <div class="flex gap-x-0.5 items-center text-gray-400">
