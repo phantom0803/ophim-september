@@ -33,7 +33,7 @@ https://github.com/hacoidev/ophim-core
     + Ví dụ theo quốc gia: `Phim hàn quốc|regions|slug|han-quoc|12|/quoc-gia/han-quoc|section_poster`
     + Ví dụ với các field khác: `Phim chiếu rạp||is_shown_in_theater|1|12||section_poster`
 
-- Danh sách hot: 
+- Danh sách hot:  `Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_text|top_thumb)`
     + `Phim sắp chiếu||status|trailer|publish_year|desc|9|top_text`
     + `Top phim bộ||type|series|view_total|desc|9|top_thumb`
     + `Top phim lẻ||type|single|view_total|desc|9|top_thumb`
