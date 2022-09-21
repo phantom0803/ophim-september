@@ -15,10 +15,14 @@
 
 ## Requirements
 https://github.com/hacoidev/ophim-core
+
 ## Install
 1. Tại thư mục của Project: `composer require ophimcms/ophim-september`
 2. Cài đặt themes: `php artisan ophim:install:theme`
 3. Kích hoạt giao diện trong Admin Panel
+
+## Update
+1. Tại thư mục của Project: `composer update ophimcms/ophim-september`
 
 ## Document
 ### List
