@@ -109,22 +109,22 @@
                 <div class="flex flex-wrap" id="tabs-id">
                     <div class="w-full">
                         <ul class="flex mb-0 list-none flex-wrap pt-3 flex-row p-1 lg:p-0">
-                            @foreach ($currentMovie->episodes->groupBy('server') as $server => $data)
+                            @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
                                 <li class="-mb-px mr-2 last:mr-0 flex-auto text-center cursor-pointer">
-                                    <a class="text-xs font-bold uppercase px-5 py-2 shadow-lg block leading-normal text-white bg-main-labelbgSecondary @if ($episode->server == $server) bg-main-primary @endif hover:shadow-menu hover:bg-main-primary"
+                                    <a class="text-xs font-bold uppercase px-1 py-2 shadow-lg block leading-normal text-white bg-main-labelbgSecondary @if ($episode->server == $server) bg-main-primary @endif hover:shadow-menu hover:bg-main-primary"
                                         onclick="changeAtiveTab(event,'tab-server-{{ $loop->index }}')">
-                                        <i class="fa-solid fa-server"></i> {{ $server }}
+                                        @if ($episode->server == $server) <i class="fa-solid fa-server"></i> @endif {{ $server }}
                                     </a>
                                 </li>
                             @endforeach
                         </ul>
-                        <div class="relative tab-content tab-space mt-1 p-2 scroll overflow-auto">
-                            @foreach ($currentMovie->episodes->groupBy('server') as $server => $data)
-                                <div class="@if ($episode->server != $server) hidden @endif relative max-h-32 lg:max-h-[592px] grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2"
+                        <div class="relative tab-content tab-space mt-1 p-2 scroll overflow-auto max-h-32 md:max-h-[345px] lg:max-h-[370px] xl:max-h-[475px] 2xl:max-h-[602px]">
+                            @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
+                                <div class="@if ($episode->server != $server) hidden @endif grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-2"
                                     id="tab-server-{{ $loop->index }}">
-                                    @foreach ($data->sortBy([['name', 'desc'], ['type', 'desc']])->groupBy('name') as $name => $item)
+                                    @foreach ($data->sortByDesc('name', SORT_NATURAL)->groupBy('name') as $name => $item)
                                         <a class="relative w-content text-center bg-main-labelbgSecondary @if ($item->contains($episode)) bg-main-primary @endif text-white hover:shadow-menu hover:bg-main-primary duration-150 py-1 overflow-hidden overflow-ellipsis whitespace-nowrap"
-                                            title="{{ $name }}" href="{{ $item->first()->getUrl() }}">
+                                            title="{{ $name }}" href="{{ $item->sortByDesc('type')->first()->getUrl() }}">
                                             {{ $name }}
                                             @if ($item->contains($episode))
                                                 <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">

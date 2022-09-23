@@ -107,8 +107,9 @@
                         Trailer
                     </label>
                 @endif
+                {{-- optimize sau --}}
                 @if (!$currentMovie->is_copyright && count($currentMovie->episodes) && $currentMovie->episodes[0]['link'] != '')
-                    <a href="{{ $currentMovie->episodes->sortBy([['name', 'asc'], ['type', 'desc']])->first()->getUrl() }}">
+                    <a href="{{ $currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server')->first()->sortByDesc('name', SORT_NATURAL)->groupBy('name')->last()->sortByDesc('type')->first()->getUrl() }}">
                         <div
                             class="bg-main-primary text-gray-50 inline-block px-3 py-2 shadow-none hover:shadow-primary duration-150">
                             <i class="fa-light fa-circle-play"></i>
@@ -255,13 +256,14 @@
                     </span>
                 </li>
 
-                @if (!$currentMovie->is_copyright && count($currentMovie->episodes) && $currentMovie->episodes[0]['link'] != '')
+                @if ($currentMovie->type === "series" && !$currentMovie->is_copyright && count($currentMovie->episodes) && $currentMovie->episodes[0]['link'] != '')
                     <li class="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-3">
                         <label class="font-bold text-white">Tập mới nhất: </label>
                         <span class="flex gap-1">
                             @php
                                 $currentMovie->episodes
                                     ->sortBy([['name', 'desc'], ['type', 'desc']])
+                                    ->sortByDesc('name', SORT_NATURAL)
                                     ->unique('name')
                                     ->take(3)
                                     ->map(function ($episode) {

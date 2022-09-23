@@ -12,8 +12,7 @@
                         {{ $movie->origin_name }} ({{ $movie->publish_year }})
                     </div>
                 </span>
-                <span class="absolute top-0 left-0 p-0.5 bg-main-primary text-sm">Tập
-                    10</span>
+                <span class="absolute top-0 left-0 p-0.5 bg-main-primary text-sm">{{ $movie->episode_current }}</span>
             </a>
         @else
             <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}" class="@if ($loop->last) hidden lg:block @endif overflow-hidden relative group">
@@ -25,8 +24,7 @@
                         {{ $movie->origin_name }} ({{ $movie->publish_year }})
                     </div>
                 </span>
-                <span class="absolute top-0 left-0 p-0.5 bg-main-primary text-sm">Tập
-                    10</span>
+                <span class="absolute top-0 left-0 p-0.5 bg-main-primary text-sm">{{ $movie->episode_current }}</span>
             </a>
         @endif
     @endforeach
