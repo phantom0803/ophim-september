@@ -171,7 +171,7 @@
 
                 </div>
             </div>
-            <article class="bg-main-800/40 p-2 mt-2 md:flex flex-wrap">
+            <article class="block bg-main-800/40 p-2 mt-2 md:flex flex-wrap">
                 <div class="border-b-[1px] border-main-secondary border-opacity-25 py-1 scroll overflow-auto max-h-32">
                     @if ($currentMovie->content)
                         {!! $currentMovie->content !!}
