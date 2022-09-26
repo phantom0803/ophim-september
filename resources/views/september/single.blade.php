@@ -277,7 +277,7 @@
         </div>
     </div>
 
-    <article class="block bg-main-800/40 p-2 mt-2 md:flex flex-wrap">
+    <article class="block bg-main-800/40 p-2 mt-2">
         <h3 class="font-medium text-xl pb-2">Nội dung phim</h3>
         <div class="border-b-[1px] border-main-secondary border-opacity-25 py-1">
             @if ($currentMovie->content)
