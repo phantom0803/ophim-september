@@ -58,7 +58,7 @@ $data = Cache::remember('site.movies.latest', setting('site_cache_ttl', 5 * 60),
                 <div id="slider_recommend" class="owl-carousel owl-theme absolute">
                     @foreach ($recommendations ?? [] as $movie)
                         <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}"
-                            class="row-span-1 col-span-1 md:row-span-2 md:col-span-2 overflow-hidden relative group">
+                            class="block row-span-1 col-span-1 md:row-span-2 md:col-span-2 overflow-hidden relative group">
                             <img style="aspect-ratio: 256/340" src="{{ $movie->thumb_url }}" alt="{{ $movie->name ?? '' }}"
                                 class="group-hover:opacity-60 transition-all duration-500 transform group-hover:bg-opacity-60" />
                             <span

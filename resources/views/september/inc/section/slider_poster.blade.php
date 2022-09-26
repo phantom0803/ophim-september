@@ -1,7 +1,7 @@
 <div id="slider_poster_{{ $loop->index }}" class="owl-carousel owl-theme absolute">
     @foreach ($item['data'] ?? [] as $movie)
         <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}"
-            class="row-span-1 col-span-1 md:row-span-2 md:col-span-2 overflow-hidden relative group">
+            class="block row-span-1 col-span-1 md:row-span-2 md:col-span-2 overflow-hidden relative group">
             <img style="aspect-ratio: 16/9" src="{{ $movie->poster_url }}" alt="{{ $movie->name ?? '' }}"
                 class="group-hover:opacity-60 transition-all duration-500 transform group-hover:bg-opacity-60" />
             <span class="absolute bottom-0 px-2 pb-2 pt-16 bg-gradient-to-t from-main-900 w-full text-main-warning">
