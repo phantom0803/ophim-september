@@ -31,11 +31,11 @@ class SeptemberController
                 $movie->where('publish_year', request('filter')['year']);
             })->when(!empty($request['filter']['type']), function ($movie) {
                 $movie->where('type', request('filter')['type']);
-            })->when(!empty($request['search']), function ($query) {
+            })->when(!empty($request['search']), function ($query, $movie) {
                 $query->where(function ($query) {
                     $query->where('name', 'like', '%' . request('search') . '%')
                         ->orWhere('origin_name', 'like', '%' . request('search')  . '%');
-                });
+                })->orderBy('name', 'desc');
             })->when(!empty($request['filter']['sort']), function ($movie) {
                 if (request('filter')['sort'] == 'create') {
                     return $movie->orderBy('created_at', 'desc');
