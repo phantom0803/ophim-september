@@ -54,7 +54,7 @@ class SeptemberServiceProvider extends ServiceProvider
                         'label' => 'Danh sách hot',
                         'type' => 'code',
                         'hint' => 'Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_text|top_thumb)',
-                        'value' => "Top phim lẻ||type|single|view_total|desc|9|top_text\r\nTop phim bộ||type|single|view_total|desc|9|top_thumb",
+                        'value' => "Top phim lẻ||type|single|view_total|desc|9|top_text\r\nTop phim bộ||type|series|view_total|desc|9|top_thumb",
                         'attributes' => [
                             'rows' => 5
                         ],
