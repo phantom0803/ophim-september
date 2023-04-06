@@ -170,10 +170,10 @@
                     <div class="items-center text-center gap-x-2">
                         <div id="movies-rating-star" class="flex justify-center" style="height: 18px;"></div>
                         <div class="text-white align-middle">
-                            ({{ number_format($currentMovie->rating_star ?? 0, 1) }}
+                            ({{ $currentMovie->getRatingStar() }}
                             sao
                             /
-                            {{ $currentMovie->rating_count ?? 0 }} đánh giá)
+                            {{$currentMovie->getRatingCount()}} đánh giá)
                         </div>
                         <div id="movies-rating-msg" class="text-[#FDB813] mb-2 font-bold text-sm mt-2"></div>
                     </div>
@@ -350,7 +350,7 @@
     <script>
         var rated = false;
         $('#movies-rating-star').raty({
-            score: {{ number_format($currentMovie->rating_star ?? 0, 1) }},
+            score: {{ $currentMovie->getRatingStar() }},
             number: 10,
             numberMax: 10,
             hints: ['quá tệ', 'tệ', 'không hay', 'không hay lắm', 'bình thường', 'xem được', 'có vẻ hay', 'hay',
