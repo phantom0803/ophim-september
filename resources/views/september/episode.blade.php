@@ -7,26 +7,19 @@
                 <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
                     <a class="flex items-center gap-x-1" itemProp="item" title="Xem phim" href="/">
                         <span class="flex items-center gap-x-1 text-main-primary hover:text-main-warning" itemProp="name">
-                            <i class="fa-thin fa-house-heart text-base"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+                        </svg>
                             Xem phim
                         </span>
-                        <i class="fa-thin fa-chevron-right text-xs"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
                         <meta itemProp="position" content="1" />
                     </a>
                 </li>
-                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                    <a class="text-main-primary hover:text-main-warning" itemprop="item"
-                        href="/danh-sach/{{ $currentMovie->type == 'single' ? 'phim-le' : 'phim-bo' }}"
-                        title="{{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}">
-                        <span itemprop="name">
-                            {{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}
-                        </span>
-                    </a>
-                    <i class="fa-thin fa-chevron-right text-xs"></i>
-                    <meta itemprop="position" content="2">
-                </li>
-
-
                 @foreach ($currentMovie->regions as $region)
                     <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                         <a class="text-main-primary hover:text-main-warning" itemprop="item" href="{{ $region->getUrl() }}"
@@ -35,7 +28,9 @@
                                 {{ $region->name }}
                             </span>
                         </a>
-                        <i class="fa-thin fa-chevron-right text-xs"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
                         <meta itemprop="position" content="3">
                     </li>
                 @endforeach
@@ -47,7 +42,9 @@
                                 {{ $category->name }}
                             </span>
                         </a>
-                        <i class="fa-thin fa-chevron-right text-xs"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
                         <meta itemprop="position" content="3">
                     </li>
                 @endforeach
@@ -58,7 +55,9 @@
                             {{ $currentMovie->name }}
                         </span>
                     </a>
-                    <i class="fa-thin fa-chevron-right text-xs"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
                     <meta itemprop="position" content="4">
                 </li>
                 <li class="inline text-gray-400" itemprop="itemListElement" itemscope=""
@@ -98,7 +97,10 @@
                 <div class="block lg:flex items-center">
                     <span id="toggleModal-report"
                         class="w-content text-center bg-main-danger text-white hover:shadow-menu hover:bg-main-primary duration-150 px-2 md:px-3 py-1 cursor-pointer">
-                        <i class="fa-solid fa-bug"></i> Báo lỗi
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75c1.148 0 2.278.08 3.383.237 1.037.146 1.866.966 1.866 2.013 0 3.728-2.35 6.75-5.25 6.75S6.75 18.728 6.75 15c0-1.046.83-1.867 1.866-2.013A24.204 24.204 0 0112 12.75zm0 0c2.883 0 5.647.508 8.207 1.44a23.91 23.91 0 01-1.152 6.06M12 12.75c-2.883 0-5.647.508-8.208 1.44.125 2.104.52 4.136 1.153 6.06M12 12.75a2.25 2.25 0 002.248-2.354M12 12.75a2.25 2.25 0 01-2.248-2.354M12 8.25c.995 0 1.971-.08 2.922-.236.403-.066.74-.358.795-.762a3.778 3.778 0 00-.399-2.25M12 8.25c-.995 0-1.97-.08-2.922-.236-.402-.066-.74-.358-.795-.762a3.734 3.734 0 01.4-2.253M12 8.25a2.25 2.25 0 00-2.248 2.146M12 8.25a2.25 2.25 0 012.248 2.146M8.683 5a6.032 6.032 0 01-1.155-1.002c.07-.63.27-1.222.574-1.747m.581 2.749A3.75 3.75 0 0115.318 5m0 0c.427-.283.815-.62 1.155-.999a4.471 4.471 0 00-.575-1.752M4.921 6a24.048 24.048 0 00-.392 3.314c1.668.546 3.416.914 5.223 1.082M19.08 6c.205 1.08.337 2.187.392 3.314a23.882 23.882 0 01-5.223 1.082" />
+                        </svg>
+                        Báo lỗi
                     </span>
                 </div>
             </div>
@@ -113,7 +115,11 @@
                                 <li class="-mb-px mr-2 last:mr-0 flex-auto text-center cursor-pointer">
                                     <a class="text-xs font-bold uppercase px-1 py-2 shadow-lg block leading-normal text-white bg-main-labelbgSecondary @if ($episode->server == $server) bg-main-primary @endif hover:shadow-menu hover:bg-main-primary"
                                         onclick="changeAtiveTab(event,'tab-server-{{ $loop->index }}')">
-                                        @if ($episode->server == $server) <i class="fa-solid fa-server"></i> @endif {{ $server }}
+                                        @if ($episode->server == $server)
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
+                                            </svg>
+                                        @endif {{ $server }}
                                     </a>
                                 </li>
                             @endforeach
@@ -150,7 +156,7 @@
 @section('content')
     <div class="bg-main-800/40 p-2 mt-2 md:flex flex-wrap">
         <div class="relative w-full h-full pt-0 md:w-1/3 lg:w-1/3 xl:w-1/6">
-            <img style="aspect-ratio: 266/400" src="{{ $currentMovie->thumb_url }}" alt="{{ $currentMovie->name }}"
+            <img style="aspect-ratio: 266/400" src="{{ $currentMovie->getThumbUrl() }}" alt="{{ $currentMovie->name }}"
                 class="w-full h-auto max-h-96" />
         </div>
 
@@ -193,9 +199,10 @@
         </div>
     </div>
 
-
-    <div class="fb-comments w-full bg-white mt-2" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
-        data-numposts="5" data-colorscheme="light" data-lazy="true">
+    <div class="bg-white mt-2 w-full" style="background-color: #ffffff">
+        <div class="fb-comments w-full" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
+            data-numposts="5" data-colorscheme="light" data-lazy="true">
+        </div>
     </div>
 
     <section class="w-full mt-2">
@@ -223,7 +230,9 @@
                         <div class="sm:flex sm:items-start">
                             <div
                                 class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                                <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-600">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                </svg>
                             </div>
                             <div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                 <h3 class="text-lg font-medium leading-6 text-gray-100" id="modal-title">Báo lỗi phim</h3>
@@ -399,7 +408,7 @@
                     key: "{{ Setting::get('jwplayer_license') }}",
                     aspectratio: "16:9",
                     width: "100%",
-                    image: "{{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}",
+                    image: "{{ $currentMovie->getPosterUrl() }}",
                     file: link,
                     playbackRateControls: true,
                     playbackRates: [0.25, 0.75, 1, 1.25],

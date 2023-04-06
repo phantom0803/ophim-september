@@ -4,7 +4,7 @@
             <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}"
                 class="row-span-1 col-span-2 md:row-span-2 md:col-span-2 overflow-hidden relative group">
                 <img
-                    src="{{ $movie->poster_url }}" alt="{{ $movie->name ?? '' }}"
+                    src="{{ $movie->getPosterUrl() }}" alt="{{ $movie->name ?? '' }}"
                     class="group-hover:opacity-60 transition-all duration-500 transform group-hover:scale-110 w-full h-full" />
                 <span class="absolute bottom-0 px-2 pb-2 pt-16 bg-gradient-to-t from-main-900 w-full text-main-warning">
                     <div class="font-bold overflow-hidden overflow-ellipsis whitespace-nowrap">{{ $movie->name }}</div>
@@ -16,8 +16,8 @@
             </a>
         @else
             <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}" class="@if ($loop->last) hidden lg:block @endif overflow-hidden relative group">
-                <img src="{{ $movie->poster_url }}" alt="{{ $movie->name ?? '' }}"
-                    class="group-hover:opacity-60 transition-all duration-500 transform group-hover:scale-110 w-full h-full" />
+                <img data-src="{{ $movie->getPosterUrl() }}" alt="{{ $movie->name ?? '' }}"
+                    class="group-hover:opacity-60 transition-all duration-500 transform group-hover:scale-110 w-full h-full lazyload" />
                 <span class="absolute bottom-0 px-2 pb-2 pt-16 bg-gradient-to-t from-main-900 w-full text-main-warning">
                     <div class="font-bold overflow-hidden overflow-ellipsis whitespace-nowrap">{{ $movie->name }}</div>
                     <div class="text-sm text-gray-300 italic overflow-hidden overflow-ellipsis whitespace-nowrap">

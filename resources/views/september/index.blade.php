@@ -59,7 +59,7 @@ $data = Cache::remember('site.movies.latest', setting('site_cache_ttl', 5 * 60),
                     @foreach ($recommendations ?? [] as $movie)
                         <a href="{{ $movie->getUrl() }}" title="{{ $movie->name ?? '' }}"
                             class="block row-span-1 col-span-1 md:row-span-2 md:col-span-2 overflow-hidden relative group">
-                            <img style="aspect-ratio: 256/340" src="{{ $movie->thumb_url }}" alt="{{ $movie->name ?? '' }}"
+                            <img style="aspect-ratio: 256/340" src="{{ $movie->getThumbUrl() }}" alt="{{ $movie->name ?? '' }}"
                                 class="group-hover:opacity-60 transition-all duration-500 transform group-hover:bg-opacity-60" />
                             <span
                                 class="absolute bottom-0 px-2 pb-2 pt-16 bg-gradient-to-t from-main-900 w-full text-main-warning">
@@ -82,6 +82,7 @@ $data = Cache::remember('site.movies.latest', setting('site_cache_ttl', 5 * 60),
 @endsection
 
 @section('content')
+    <h1 class="h-text text-white uppercase mb-2">{{ $title }}</h1>
     @foreach ($data as $item)
         <section class="w-full mt-2">
             <div class="flex justify-between">
@@ -95,7 +96,9 @@ $data = Cache::remember('site.movies.latest', setting('site_cache_ttl', 5 * 60),
                 <a href="{{ $item['link'] }}" title="{{ $item['label'] }}">
                     <div class="px-2 py-2 flex gap-x-2 text-md text-main-purple hover:text-main-orange items-center">
                         <span>Xem thêm</span>
-                        <i class="fa-light fa-chevrons-right"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+                        </svg>
                     </div>
                 </a>
             </div>
@@ -136,17 +139,23 @@ $data = Cache::remember('site.movies.latest', setting('site_cache_ttl', 5 * 60),
                         },
                     },
                     scrollPerPage: true,
-                    // lazyLoad: true,
+                    lazyLoad: true,
                     slideSpeed: 800,
                     paginationSpeed: 400,
                     stopOnHover: true,
                     autoplay: true,
                     navText: [
-                        `<button class="block absolute top-0 left-0 text-white bg-main-900/60 h-[90%]">
-                        <i class="fa-light px-1 fa-angles-left top-0 text-2xl"></i>
+                    `<button class="block absolute top-0 left-0 text-white bg-main-900/60 h-[90%]">
+                        <span style="display: none" aria-label="Previous">‹</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 px-1 top-0 text-2xl">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+                        </svg>
                     </button>`,
-                        `<button class="block absolute top-0 right-0 text-white bg-main-900/60 h-[90%]">
-                        <i class="fa-light px-1 fa-angles-right top-0 text-2xl"></i>
+                    `<button class="block absolute top-0 right-0 text-white bg-main-900/60 h-[90%]">
+                        <span style="display: none" aria-label="Next">›</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 px-1 top-0 text-2xl">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+                        </svg>
                     </button>`
                     ],
                 });

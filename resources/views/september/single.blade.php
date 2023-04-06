@@ -7,26 +7,19 @@
                 <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
                     <a class="flex items-center gap-x-1" itemProp="item" title="Xem phim" href="/">
                         <span class="flex items-center gap-x-1 text-main-primary hover:text-main-warning" itemProp="name">
-                            <i class="fa-thin fa-house-heart text-base"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+                            </svg>
                             Xem phim
                         </span>
-                        <i class="fa-thin fa-chevron-right text-xs"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
                         <meta itemProp="position" content="1" />
                     </a>
                 </li>
-                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                    <a class="text-main-primary hover:text-main-warning" itemprop="item"
-                        href="/danh-sach/{{ $currentMovie->type == 'single' ? 'phim-le' : 'phim-bo' }}"
-                        title="{{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}">
-                        <span itemprop="name">
-                            {{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}
-                        </span>
-                    </a>
-                    <i class="fa-thin fa-chevron-right text-xs"></i>
-                    <meta itemprop="position" content="2">
-                </li>
-
-
                 @foreach ($currentMovie->regions as $region)
                     <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                         <a class="text-main-primary hover:text-main-warning" itemprop="item" href="{{ $region->getUrl() }}"
@@ -35,7 +28,9 @@
                                 {{ $region->name }}
                             </span>
                         </a>
-                        <i class="fa-thin fa-chevron-right text-xs"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
                         <meta itemprop="position" content="3">
                     </li>
                 @endforeach
@@ -47,7 +42,9 @@
                                 {{ $category->name }}
                             </span>
                         </a>
-                        <i class="fa-thin fa-chevron-right text-xs"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
                         <meta itemprop="position" content="3">
                     </li>
                 @endforeach
@@ -68,21 +65,25 @@
 @section('content')
     @if ($currentMovie->showtimes && $currentMovie->showtimes != '')
         <div class="mt-2.5 p-2 bg-main-800 mb-1 border-main-warning/60 border-[1px] border-dashed text-gray-300">
-            <i class="fa-thin fa-calendar-days animate-pulse"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 animate-pulse inline">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+            </svg>
             Lịch chiếu: <span class="text-yellow-500">{!! $currentMovie->showtimes !!}</span>
         </div>
     @endif
 
     @if ($currentMovie->notify && $currentMovie->notify != '')
         <div class="mt-2.5 p-2 bg-main-800 mb-1 border-main-warning/60 border-[1px] border-dashed text-gray-300">
-            <i class="fa-thin fa-bell-on animate-pulse"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 animate-pulse inline">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5" />
+            </svg>
             Thông báo: <span class="text-main-blue">{{ strip_tags($currentMovie->notify) }}</span>
         </div>
     @endif
 
     <div class="bg-main-800/40 p-2 mt-2 md:flex flex-wrap">
         <div class="relative overflow-hidden w-full h-full pt-0 md:w-1/3 lg:w-1/3 xl:w-1/4">
-            <img style="aspect-ratio: 256/340" src="{{ $currentMovie->thumb_url }}"
+            <img style="aspect-ratio: 256/340" src="{{ $currentMovie->getThumbUrl() }}"
                 alt="{{ $currentMovie->name }} - {{ $currentMovie->origin_name }} ({{ $currentMovie->publish_year }})"
                 class="w-full h-auto max-h-96" />
 
@@ -93,7 +94,12 @@
             @endif
 
             <div class="absolute top-0 right-0 bg-main-800/80 p-2 flex items-center gap-x-1 text-main-success">
-                <i class="fa-regular fa-eye text-xs"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
                 <span class="text-xs">
                     {{ $currentMovie->view_total }}
                 </span>
@@ -103,7 +109,6 @@
                 @if ($currentMovie->trailer_url)
                     <label id="toggleModal-trailer"
                         class="bg-main-blue text-gray-50 inline-block px-3 py-2 shadow-none hover:shadow-secondary duration-150 cursor-pointer">
-                        <i class="fa-brands fa-youtube"></i>
                         Trailer
                     </label>
                 @endif
@@ -112,7 +117,13 @@
                     <a href="{{ $currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server')->first()->sortByDesc('name', SORT_NATURAL)->groupBy('name')->last()->sortByDesc('type')->first()->getUrl() }}">
                         <div
                             class="bg-main-primary text-gray-50 inline-block px-3 py-2 shadow-none hover:shadow-primary duration-150">
-                            <i class="fa-light fa-circle-play"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6 inline">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
+                            </svg>
                             Xem phim
                         </div>
                     </a>
@@ -266,8 +277,8 @@
                                     ->sortByDesc('name', SORT_NATURAL)
                                     ->unique('name')
                                     ->take(3)
-                                    ->map(function ($episode) {
-                                        echo '<a href="' . $episode->getUrl() . '" class="w-content text-center bg-main-labelbgSecondary text-white hover:shadow-menu hover:bg-main-primary duration-150 px-4 py-1 overflow-hidden overflow-ellipsis whitespace-nowrap">' . $episode->name . '</a>';
+                                    ->map(function ($episode) use ($currentMovie) {
+                                        echo '<a href="' . $episode->getUrl() . '" title="'. $currentMovie->name .' tập '. $episode->name .'" class="w-content text-center bg-main-labelbgSecondary text-white hover:shadow-menu hover:bg-main-primary duration-150 px-4 py-1 overflow-hidden overflow-ellipsis whitespace-nowrap">' . $episode->name . '</a>';
                                     });
                             @endphp
                         </span>
@@ -299,8 +310,10 @@
         </div>
     </article>
 
-    <div class="fb-comments w-full bg-white mt-2" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
-        data-numposts="5" data-colorscheme="light" data-lazy="true">
+    <div class="bg-white mt-2 w-full" style="background-color: #ffffff">
+        <div class="fb-comments w-full" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
+            data-numposts="5" data-colorscheme="light" data-lazy="true">
+        </div>
     </div>
 
     <section class="w-full mt-2">

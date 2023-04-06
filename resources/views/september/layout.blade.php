@@ -36,9 +36,7 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
 
 @push('header')
     <link href="/themes/september/css/styles.min.css" rel="stylesheet">
-    <link href="/themes/september/plugins/fontawesome/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet" />
 @endpush
 
 @section('body')
@@ -87,6 +85,6 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
             })
         });
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {!! setting('site_scripts_google_analytics') !!}
 @endsection
